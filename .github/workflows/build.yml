@@ -2,7 +2,7 @@ name: 'Build Installer'
 
 on:
   repository_dispatch:
-    types: [build-all-releases]
+    types: [build-installer]
 
 jobs:
   build-installer:
