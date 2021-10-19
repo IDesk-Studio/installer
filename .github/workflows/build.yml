@@ -1,0 +1,39 @@
+name: 'Build Installer'
+
+on:
+  repository_dispatch:
+    types: [build-all-releases]
+
+jobs:
+  build-installer:
+    runs-on: windows-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install deps
+        run: |
+          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+          scoop bucket add extras
+          scoop install nsis curl tar gh
+
+      - name: Download Release
+        run: |
+          gh release download --repo Azbooka/idesk-setup --pattern '*.exe' --dir "."
+        shell: bash
+
+      - name: Update latest
+        if: ${{ success() }}
+        uses: 'marvinpinto/action-automatic-releases@latest'
+        with:
+          repo_token: '${{ secrets.TOKEN }}'
+          automatic_release_tag: 'latest'
+          prerelease: false
+          title: 'latest build'
+          files: |
+            *.exe
+
