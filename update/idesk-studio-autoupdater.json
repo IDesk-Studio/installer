@@ -1,6 +1,6 @@
 {
    "version":"2.0.3.6",
-   "url":"https://downloader.disk.yandex.ru/disk/b36076b56c09e56ddc957e4b1686aebdbe0a05da86cd6c379da1669fee9cdfaf/61e38945/uokAq8G0UbXyr976p0viIlGFGyimOdiFP6JfsTYKjxocr6SsTgorTaUsidgQUZSAy4mB7UwEEwV-2GEGXcMxog%3D%3D?uid=0&filename=idesk-studio-latest-setup.exe&disposition=attachment&hash=NzbrOei4ByGqPbmdS/tkkf2nL9fzdYKtRmWR9RzT9TCqcxaXnIMJG9d%2B4scuNJPJq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=application%2Fx-dosexec&owner_uid=1183224715&fsize=246888623&hid=38c237e1dcf947e5d29a5db1282b0739&media_type=executable&tknv=v2",
+   "url":"https://github.com/Azbooka/installer/releases/download/latest/idesk-studio-latest-setup.exe",
    "mandatory":{
       "value":false
    }
