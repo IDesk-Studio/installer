@@ -1,0 +1,14 @@
+{
+   "version":"2.0.3.6",
+   "url":"https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/95puxmE2KZmTvg",
+   "changelog":"https://github.com/ravibpatel/AutoUpdater.NET/releases",
+   "mandatory":{
+      "value":true,
+      "minVersion": "2.0.3.6",
+      "mode":1
+   },
+   "checksum":{
+      "value":"E5F59E50FC91A9E52634FFCB11F32BD37FE0E2F1",
+      "hashingAlgorithm":"SHA1"
+   }
+}
