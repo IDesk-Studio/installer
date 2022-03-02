@@ -2,35 +2,33 @@ name: 'Build Installer'
 
 on:
   repository_dispatch:
-    types: [build-installer]
+    types: [nsis_publish]
+
+env:
+  repository: Azbooka/idesk-setup
+  studio_name: azbooka_editor.zip
+  editor_name: idesk_studio.zip
+  version: ${{ github.event.client_payload.ref }}
 
 jobs:
   build-installer:
     runs-on: windows-latest
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.TOKEN }}
-
     steps:
-      - name: Checkout
+
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install deps
-        run: |
-          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-          scoop bucket add extras
-          scoop install gh
-
-      - name: Download Release
-        run: |
-          gh release download --repo Azbooka/idesk-setup --pattern '*.exe' --dir "."
+      - name: Download release
         shell: bash
+        run: |
+          echo "${{ secrets.BUILD_TOKEN }}" | gh auth login --with-token
+          gh release download --repo ${{ env.repository }} --pattern '*.exe'
 
-      - name: Update latest
+      - name: Upload release ${{ env.version }}
         if: ${{ success() }}
         uses: 'marvinpinto/action-automatic-releases@latest'
         with:
-          repo_token: '${{ secrets.TOKEN }}'
+          repo_token: '${{ secrets.BUILD_TOKEN }}'
           automatic_release_tag: 'latest'
           prerelease: false
           title: 'latest build'
